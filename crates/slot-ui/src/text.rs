@@ -2,10 +2,10 @@ use std::sync::OnceLock;
 
 use fontdue::{Font, FontSettings};
 
-const LABEL_TTF: &[u8] = include_bytes!("../assets/label.ttf");
-/// Zpix (最像素) covers CJK. Used as a fallback for glyphs the Latin faces
-/// lack, so Chinese names/SSIDs/messages become visible on screen.
-const CJK_TTF: &[u8] = include_bytes!("../assets/zpix.ttf");
+/// Zpix (最像素) is the one font for all UI text: Latin, Chinese and symbols
+/// share the same pixel typeface, so mixed-language strings stay visually
+/// consistent. It is embedded at build time and loaded lazily on first use.
+const LABEL_TTF: &[u8] = include_bytes!("../assets/zpix.ttf");
 
 pub struct Layout {
     pub lines: Vec<String>,
@@ -17,24 +17,6 @@ pub fn label_font() -> Option<&'static Font> {
     static FONT: OnceLock<Option<Font>> = OnceLock::new();
     FONT.get_or_init(|| Font::from_bytes(LABEL_TTF, FontSettings::default()).ok())
         .as_ref()
-}
-
-pub fn cjk_font() -> Option<&'static Font> {
-    static FONT: OnceLock<Option<Font>> = OnceLock::new();
-    FONT.get_or_init(|| Font::from_bytes(CJK_TTF, FontSettings::default()).ok())
-        .as_ref()
-}
-
-/// Select the face that can actually render `ch`: keep the requested font for
-/// glyphs it owns (preserving the original Latin typography), and fall back to
-/// the bundled CJK font otherwise. This is glyph-index based rather than
-/// script based, so it also covers symbols and mixed-script strings.
-pub(crate) fn font_for(font: &Font, ch: char) -> &Font {
-    if font.lookup_glyph_index(ch) != 0 {
-        font
-    } else {
-        cjk_font().unwrap_or(font)
-    }
 }
 
 pub fn fit(
@@ -172,7 +154,7 @@ fn coverage_from(dst_w: u32, dst_h: u32, layout: &Layout, left: Option<f32>) -> 
             (dst_w as f32 - line_width(font, line, layout.px, layout.tracking)) / 2.0
         });
         for ch in line.chars() {
-            let (m, cov) = font_for(font, ch).rasterize(ch, layout.px);
+            let (m, cov) = font.rasterize(ch, layout.px);
             stamp(
                 &mut out,
                 dst_w,
@@ -201,7 +183,7 @@ pub fn line_width(font: &Font, line: &str, px: f32, tracking: f32) -> f32 {
     let mut w = 0.0;
     let mut n = 0;
     for ch in line.chars() {
-        w += font_for(font, ch).metrics(ch, px).advance_width;
+        w += font.metrics(ch, px).advance_width;
         n += 1;
     }
     w + tracking * (n as f32 - 1.0).max(0.0)

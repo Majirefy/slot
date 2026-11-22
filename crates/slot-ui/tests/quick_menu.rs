@@ -34,8 +34,10 @@ fn the_type_sits_exactly_menu_pad_in_from_both_sides_of_its_face() {
             "ink starts at {first} of {}",
             f.w
         );
+        // The pixel font leaves a couple of blank columns inside a glyph's
+        // advance, so the last inked column can sit a little inside the pad.
         assert!(
-            (right - 4..=right).contains(&last),
+            (right.saturating_sub(6)..=right).contains(&last),
             "ink ends at {last} of {}",
             f.w
         );

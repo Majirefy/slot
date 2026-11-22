@@ -16,7 +16,7 @@ use crate::polaroids::{draw_album_chrome, plate, AlbumChrome};
 use crate::power_menu::{MENU_INK, MENU_PAD};
 use crate::quick_menu::{button_face, button_pair, quick_text_face, up_down_pair};
 
-const MONO_TTF: &[u8] = include_bytes!("../assets/DejaVuSansMono.ttf");
+const MONO_TTF: &[u8] = include_bytes!("../assets/zpix.ttf");
 
 pub const GUIDE_HELP_TITLE: &str = "Guide Help";
 
@@ -564,7 +564,7 @@ impl GuideGlyphs {
         }
         self.cached
             .entry(ch)
-            .or_insert_with(|| crate::text::font_for(font, ch).rasterize(ch, px))
+            .or_insert_with(|| font.rasterize(ch, px))
     }
 }
 

@@ -3,31 +3,18 @@ use slot_ui::text;
 const CJK: &str = "中文显示测试游戏设置确定返回";
 
 #[test]
-fn label_font_lacks_cjk_and_the_fallback_covers_it() {
-    let label = text::label_font().expect("label font");
-    let cjk = text::cjk_font().expect("CJK fallback font");
-
-    let missing_in_label: Vec<char> = CJK
-        .chars()
-        .filter(|ch| label.lookup_glyph_index(*ch) == 0)
-        .collect();
-    assert_eq!(
-        missing_in_label.len(),
-        CJK.chars().count(),
-        "this test needs Chinese absent from the Latin font"
-    );
-    for ch in CJK.chars() {
-        assert_ne!(
-            cjk.lookup_glyph_index(ch),
-            0,
-            "CJK fallback lacks {ch:?}"
-        );
+fn the_one_font_covers_both_latin_and_chinese() {
+    // No fallback: the single UI font must own both scripts so mixed strings
+    // render in one consistent typeface.
+    let font = text::label_font().expect("UI font");
+    for ch in CJK.chars().chain("Slot 123".chars()) {
+        assert_ne!(font.lookup_glyph_index(ch), 0, "font lacks {ch:?}");
     }
 }
 
 #[test]
 fn chinese_layout_renders_real_ink() {
-    let font = text::label_font().expect("label font");
+    let font = text::label_font().expect("UI font");
     let (w, h, px) = (320.0, 64.0, 16.0);
     let layout = text::fit(font, "中文显示", w, 1, px, px);
 
@@ -44,7 +31,7 @@ fn chinese_layout_renders_real_ink() {
 
 #[test]
 fn mixed_latin_and_chinese_keeps_both_visible() {
-    let font = text::label_font().expect("label font");
+    let font = text::label_font().expect("UI font");
     let (w, h, px) = (320.0, 64.0, 16.0);
     let layout = text::fit(font, "Slot 中文", w, 1, px, px);
     let cov = text::coverage(w as u32, h as u32, &layout);

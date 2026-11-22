@@ -345,7 +345,7 @@ fn the_symbols_layer_draws_its_currency_keys() {
             }
         }
     }
-    assert!(missing.is_empty(), "label.ttf lacks {missing:?}");
+    assert!(missing.is_empty(), "the UI font lacks {missing:?}");
 }
 
 fn ink_span(frame: &[u8], top: f32) -> Option<(usize, usize, usize)> {
