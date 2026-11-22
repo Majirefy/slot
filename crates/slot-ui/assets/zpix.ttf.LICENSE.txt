@@ -1,0 +1,14 @@
+Zpix (最像素) pixel font
+Source: https://github.com/SolidZORO/zpix-pixel-font
+
+License and pricing (from the upstream README):
+- Personal / education use: free
+- Commercial use (single product): USD 1000 (RMB 7000)
+- Commercial use (multiple products): contact the author
+
+Copyright (c) SolidZORO. All rights reserved.
+
+The upstream terms allow personal and educational use free of charge, and
+prohibit modifying, decompiling, converting or splitting the font, and its
+illegal distribution/resale. Review those terms before redistributing a build
+that embeds this font.

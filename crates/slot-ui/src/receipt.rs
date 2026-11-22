@@ -112,7 +112,7 @@ fn raster(lines: &[Line], top: usize, w: usize, h: usize, fit_w: f32, min_px: f3
         let base = y + vm.ascent;
         let mut pen = (w as f32 - text::line_width(font, &line.text, px, 0.0)) / 2.0;
         for ch in line.text.chars() {
-            let (m, cov) = font.rasterize(ch, px);
+            let (m, cov) = text::font_for(font, ch).rasterize(ch, px);
             let gx = (pen + m.xmin as f32).round() as i32;
             let gy = (base - (m.height as f32 + m.ymin as f32)).round() as i32;
             for r in 0..m.height {

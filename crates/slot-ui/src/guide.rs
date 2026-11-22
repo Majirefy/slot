@@ -564,7 +564,7 @@ impl GuideGlyphs {
         }
         self.cached
             .entry(ch)
-            .or_insert_with(|| font.rasterize(ch, px))
+            .or_insert_with(|| crate::text::font_for(font, ch).rasterize(ch, px))
     }
 }
 
