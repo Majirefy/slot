@@ -148,7 +148,7 @@ fn parts(v: &str) -> Option<Vec<u64>> {
 }
 
 /// An upstream version and this fork's release of it: `1.14.0` is `([1, 14, 0], 0)` and
-/// `1.14.0-bphenriques.2` is `([1, 14, 0], 2)`. Anything else, such as `1.14.0-rc1`, is `None`.
+/// `1.14.0-majirefy.2` is `([1, 14, 0], 2)`. Anything else, such as `1.14.0-rc1`, is `None`.
 fn fork_version(v: &str) -> Option<(Vec<u64>, u64)> {
     let (base, fork) = match v.split_once('-') {
         None => (v, 0),
@@ -319,9 +319,9 @@ impl<R: Read> Read for Stoppable<R> {
 pub const WIFI_CONF: &str = "Config/wifi.conf";
 // This fork's releases carry their own versions.json, so updates never cross over to
 // upstream's builds.
-pub const LATEST: &str = "https://github.com/bphenriques/slot/releases/latest/download/versions.json";
-const RELEASES: &str = "https://github.com/bphenriques/slot/releases/download";
-const FORK: &str = "bphenriques";
+pub const LATEST: &str = "https://github.com/Majirefy/slot/releases/latest/download/versions.json";
+const RELEASES: &str = "https://github.com/Majirefy/slot/releases/download";
+const FORK: &str = "majirefy";
 const BASEOS_RELEASES: &str = "https://github.com/pvaibhav/BaseOS/releases/download";
 
 #[derive(Debug, Clone, Copy)]

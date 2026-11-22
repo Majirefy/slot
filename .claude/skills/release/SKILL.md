@@ -1,13 +1,13 @@
 ---
 name: release
-description: Commit, push and tag a vX.Y.Z-bphenriques.N release of this fork, then confirm it published. Use only on the owner's explicit go ("push and tag", "release", "retag").
+description: Commit, push and tag a vX.Y.Z-majirefy.N release of this fork, then confirm it published. Use only on the owner's explicit go ("push and tag", "release", "retag").
 ---
 
 # Release
 
 1. **Ready.** `task check:music` passes, the change was tested on the device, and the first line
    of `RELEASE_NOTES.md` is `# <tag>` (the workflow refuses otherwise).
-2. **Commit** on `bphenriques-improvements`, author `4727729+bphenriques@users.noreply.github.com`
+2. **Commit** on `bphenriques-improvements`, author `song.fc@outlook.com`
    only, then `git push origin bphenriques-improvements`.
 3. **Tag.** `task tag:music VERSION=<tag>` (in `nix-shell -p go-task rustup cmake jq zig
    cargo-zigbuild rsync file curl unzip bun pkg-config alsa-lib udev cargo-nextest git proot`,
@@ -23,9 +23,9 @@ description: Commit, push and tag a vX.Y.Z-bphenriques.N release of this fork, t
    republishes the release with the new card and notes.
 4. **Confirm.** Local `gh` is not logged in, so use the public API:
    ```sh
-   curl -s "https://api.github.com/repos/bphenriques/slot/actions/runs?per_page=3" \
-     | jq '.workflow_runs[] | {name, head_branch, status, conclusion}'
-   curl -s https://api.github.com/repos/bphenriques/slot/releases/tags/<tag> | jq '.assets[].name'
+  curl -s "https://api.github.com/repos/Majirefy/slot/actions/runs?per_page=3" \
+    | jq '.workflow_runs[] | {name, head_branch, status, conclusion}'
+  curl -s https://api.github.com/repos/Majirefy/slot/releases/tags/<tag> | jq '.assets[].name'
    ```
    Then download the zip and check it has `Cheats/Cheats.pack` (only a warning in the run if missing).
 

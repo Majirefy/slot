@@ -167,7 +167,7 @@ fn parse_release_reads_the_version_url_and_digest() {
     assert_eq!(r.version, "1.11.0");
     assert_eq!(
         r.url,
-        "https://github.com/bphenriques/slot/releases/download/v1.11.0/slot-v1.11.0-h700.zip"
+        "https://github.com/Majirefy/slot/releases/download/v1.11.0/slot-v1.11.0-h700.zip"
     );
     assert_eq!(r.size, 6919551);
     assert_eq!(&r.sha256[..2], &[0xe7, 0x8b]);
@@ -204,28 +204,36 @@ fn newer_compares_numerically() {
 
 #[test]
 fn newer_counts_fork_releases_of_the_same_upstream_version() {
-    assert!(newer("1.14.0-bphenriques.2", "1.14.0-bphenriques.1"));
-    assert!(newer("1.14.0-bphenriques.10", "1.14.0-bphenriques.9"));
-    assert!(newer("1.14.0-bphenriques.1", "1.13.0-bphenriques.3"));
-    assert!(newer("1.14.0-bphenriques.1", "1.14.0"));
-    assert!(!newer("1.14.0", "1.14.0-bphenriques.1"));
-    assert!(!newer("1.14.0-bphenriques.1", "1.14.0-bphenriques.1"));
+    assert!(newer("1.14.0-majirefy.2", "1.14.0-majirefy.1"));
+    assert!(newer("1.14.0-majirefy.10", "1.14.0-majirefy.9"));
+    assert!(newer("1.14.0-majirefy.1", "1.13.0-majirefy.3"));
+    assert!(newer("1.14.0-majirefy.1", "1.14.0"));
+    assert!(!newer("1.14.0", "1.14.0-majirefy.1"));
+    assert!(!newer("1.14.0-majirefy.1", "1.14.0-majirefy.1"));
     assert!(!newer("1.14.0-someone.2", "1.14.0"));
-    assert!(!newer("1.14.0-bphenriques.x", "1.14.0"));
+    assert!(!newer("1.14.0-majirefy.x", "1.14.0"));
+}
+
+#[test]
+fn updates_only_count_this_forks_releases() {
+    // A release from another fork must never be offered as an update, so a device
+    // running this fork stays on it.
+    assert!(!newer("1.14.0-bphenriques.2", "1.14.0-majirefy.1"));
+    assert!(!newer("1.14.0-pvaibhav.2", "1.14.0-majirefy.1"));
 }
 
 #[test]
 fn a_fork_release_is_found_in_this_forks_releases() {
     let json = release_json(
-        "v1.14.0-bphenriques.1",
-        "slot-v1.14.0-bphenriques.1-h700.zip",
+        "v1.14.0-majirefy.1",
+        "slot-v1.14.0-majirefy.1-h700.zip",
         &"ab".repeat(32),
     );
     let release = parse_release(&json, Device::H700).unwrap();
-    assert_eq!(release.version, "1.14.0-bphenriques.1");
+    assert_eq!(release.version, "1.14.0-majirefy.1");
     assert_eq!(
         release.url,
-        "https://github.com/bphenriques/slot/releases/download/v1.14.0-bphenriques.1/slot-v1.14.0-bphenriques.1-h700.zip"
+        "https://github.com/Majirefy/slot/releases/download/v1.14.0-majirefy.1/slot-v1.14.0-majirefy.1-h700.zip"
     );
 }
 
@@ -762,7 +770,7 @@ fn parse_release_gives_the_ds_plus_its_own_zip() {
     assert_eq!(r.version, "1.11.0");
     assert_eq!(
         r.url,
-        "https://github.com/bphenriques/slot/releases/download/v1.11.0/slot-v1.11.0-rgdsplus.zip"
+        "https://github.com/Majirefy/slot/releases/download/v1.11.0/slot-v1.11.0-rgdsplus.zip"
     );
     assert_eq!(r.size, 8000000);
     assert_eq!(&r.sha256[..2], &[0xaa, 0x8b]);

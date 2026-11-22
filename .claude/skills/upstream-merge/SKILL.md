@@ -15,7 +15,7 @@ description: Merge a new pvaibhav/slot release into this fork and prepare the ma
    - Any other upstream file is one of our hooks: keep it one line.
 3. **Check.** rustfmt on our files only, as AGENTS.md has it (never `cargo fmt`: upstream is not
    rustfmt-clean), `task check:music`, then `task dist:device`. The footprint must not grow past the last merge's.
-4. **Version.** `vX.Y.Z-bphenriques.1` for the first on slot X.Y.Z, then `.2`. Update the heading,
+4. **Version.** `vX.Y.Z-majirefy.1` for the first on slot X.Y.Z, then `.2`. Update the heading,
    base and what's new (from slot, from pvaibhav) in `RELEASE_NOTES.md`, the release link in
    `README.md`, and the version line in `DEVELOPMENT.md`.
 5. **Report** conflicts, footprint, and anything new worth trying or scoping. Stop there: releasing

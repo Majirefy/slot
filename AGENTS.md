@@ -62,7 +62,7 @@ many.
 
 A device build (`task dist:device`) takes about a minute; only when asked. Never push, tag or commit
 without the owner's go; commits only for features tested on the device, authored as
-`4727729+bphenriques@users.noreply.github.com`, no other address.
+`song.fc@outlook.com`, no other address.
 
 ## Editing
 
