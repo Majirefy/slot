@@ -18,9 +18,9 @@ record = []
 
 [dependencies]
 slot-labels = { path = "../slot-labels" }
-mute = { git = "https://github.com/bphenriques/mute-player", rev = "74e853e02751e16177d411a78eab0d87b4d4082f" }
-mute-ui = { git = "https://github.com/bphenriques/mute-player", rev = "74e853e02751e16177d411a78eab0d87b4d4082f" }
-mute-view = { git = "https://github.com/bphenriques/mute-player", rev = "74e853e02751e16177d411a78eab0d87b4d4082f" }
+mute = { git = "https://github.com/Majirefy/mute-player", rev = "190acdf66a57c2bbe6c53557e1f057f992c60a05" }
+mute-ui = { git = "https://github.com/Majirefy/mute-player", rev = "190acdf66a57c2bbe6c53557e1f057f992c60a05" }
+mute-view = { git = "https://github.com/Majirefy/mute-player", rev = "190acdf66a57c2bbe6c53557e1f057f992c60a05" }
 slot-achievements = { path = "../slot-achievements" }
 slot-gfx = { path = "../slot-gfx", default-features = false }
 slot-input = { path = "../slot-input" }
@@ -51,7 +51,7 @@ image-webp = { workspace = true }
 
 [dev-dependencies]
 lofty.workspace = true
-mute-audio = { git = "https://github.com/bphenriques/mute-player", rev = "74e853e02751e16177d411a78eab0d87b4d4082f" }
+mute-audio = { git = "https://github.com/Majirefy/mute-player", rev = "190acdf66a57c2bbe6c53557e1f057f992c60a05" }
 slot-gfx = { path = "../slot-gfx", default-features = false, features = ["test-support"] }
 tempfile = { workspace = true }
 rqrr = "0.11"
