@@ -70,12 +70,12 @@ QUICK MENU › MUSIC plays what is on the card, offline.
 
 ## Getting it
 
-Download the zip from the [current release](https://github.com/Majirefy/slot/releases/tag/v1.16.0-majirefy.2)
+Download the zip from the [current release](https://github.com/Majirefy/slot/releases/tag/v1.16.0-majirefy.3)
 and put it on the card as upstream's guide says for slot. Its
 [release notes](RELEASE_NOTES.md) describe the changes since the previous fork release.
 
 A release uses upstream's version with a `-majirefy` suffix: `v1.16.0-majirefy.1` was the
-first built on upstream 1.16.0, and `v1.16.0-majirefy.2` the second.
+first built on upstream 1.16.0, `v1.16.0-majirefy.2` the second, and `v1.16.0-majirefy.3` the third.
 
 ## Credits
 
