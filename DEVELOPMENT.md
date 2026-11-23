@@ -108,7 +108,7 @@ Over adb instead: `task deploy:device`. Logs: `Logs/slot.log` on the card (or
 
 - Commit only features the owner has tested end to end on the device; never per change.
 - Author email `song.fc@outlook.com`; no other address ever.
-- Never push or tag without an explicit go. The version is `v1.16.0-majirefy.3`, shown on About from the nearest tag.
+- Never push or tag without an explicit go. The version is `v1.16.0-majirefy.4`, shown on About from the nearest tag.
 - `stash@{0}` is old music work from before the v1.7.0 merge; drop it once happy.
 
 ## Device quirks
